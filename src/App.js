@@ -35,10 +35,11 @@ class App extends React.Component {
       playlists: [],
     };
 
-    this.getCurrentlyPlaying = this.getCurrentlyPlaying.bind(this);
+    this.getPlaylists = this.getPlaylists.bind(this);
   }
 
-  getCurrentlyPlaying(token) {
+  // fetch playlists from Spotify
+  getPlaylists(token) {
     $.ajax({
       url: "https://api.spotify.com/v1/me/playlists",
       type: "GET",
@@ -53,13 +54,14 @@ class App extends React.Component {
     });
   }
 
+  // sets token and fetches playlists when App mounts
   componentDidMount() {
     let _token = hash.access_token;
     if (_token) {
       this.setState({
         token: _token
       });
-      this.getCurrentlyPlaying(_token);
+      this.getPlaylists(_token);
     }
   }
 
@@ -67,19 +69,24 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-        {!this.state.token && (
-          <a
-            className="btn btn--loginApp-link"
-            href={`${authEndpoint}?client_id=${clientID}&redirect_uri=${redirectUri}&scope=${scopes.join("%20")}&response_type=token&show_dialog=true`}
-          >
-            Login to Spotify
-          </a>
-        )}
-        {this.state.token && (
-          <PlaylistViewer
-            playlists={this.state.playlists}
-          />
-        )}
+          
+          {/* if no auth token, prompt user to login */}
+          {!this.state.token && (
+            <a
+              className="btn btn--loginApp-link"
+              style={{color: "white"}}
+              href={`${authEndpoint}?client_id=${clientID}&redirect_uri=${redirectUri}&scope=${scopes.join("%20")}&response_type=token&show_dialog=true`}
+            >
+              Login to Spotify
+            </a>
+          )}
+
+          {/* if auth token, display playlists */}
+          {this.state.token && (
+            <PlaylistViewer
+              playlists={this.state.playlists}
+            />
+          )}
         </header>
       </div>
     );
