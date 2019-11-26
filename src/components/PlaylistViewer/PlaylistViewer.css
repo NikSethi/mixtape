@@ -1,0 +1,28 @@
+html {
+    background-color: #071c23;
+}
+
+.playlist-card {
+    background-color: #3c6b7c;
+
+    display: flex;
+    width: 600px;
+    margin-bottom: 30px;
+
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px black;
+}
+
+.playlist-card p {
+    width: 500px;
+    padding-left: 15px;
+
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #e4fde1;
+}
+
+.playlist-card img {
+    width: 100px;
+    border-radius: 5px 0px 0px 5px;
+}
