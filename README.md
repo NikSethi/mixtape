@@ -1,3 +1,9 @@
+# To-Do
+[ ] Show tempo, key, mode, time signature of each track in a playlist (perhaps just a table)
+[ ] Be able to click into a playlist to see the above
+[ ] Add same functionality for albums
+  [ ] can start with an input for ID for albums
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
